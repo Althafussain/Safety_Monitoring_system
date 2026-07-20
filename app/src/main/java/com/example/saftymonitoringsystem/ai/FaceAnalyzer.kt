@@ -1,5 +1,6 @@
 package com.example.saftymonitoringsystem.ai
 
+import android.content.Context
 import androidx.annotation.OptIn
 import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageAnalysis
@@ -25,6 +26,7 @@ import com.google.mlkit.vision.face.FaceDetectorOptions
  * "Potential emotional distress detected" — never as a clinical diagnosis.
  */
 class FaceAnalyzer(
+    private val context: Context,
     private val onFaceAnalyzed: (
         primaryEmotion: String,
         confidence: Float,
@@ -42,6 +44,17 @@ class FaceAnalyzer(
         .build()
 
     private val detector = FaceDetection.getClient(options)
+
+    private val modelAssetName = EmotionModelAsset.inferAssetName(null)
+
+    init {
+        val exists = EmotionModelAsset.exists(context, modelAssetName)
+        if (!exists) {
+            android.util.Log.w("FaceAnalyzer", "Emotion model asset not found in app assets: $modelAssetName")
+        } else {
+            android.util.Log.i("FaceAnalyzer", "Using emotion model asset: $modelAssetName")
+        }
+    }
 
     // ── Analysis ──────────────────────────────────────────────────────────────
 

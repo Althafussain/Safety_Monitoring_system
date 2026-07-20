@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.saftymonitoringsystem.ui.screens.ContactsScreen
 import com.example.saftymonitoringsystem.ui.screens.DashboardScreen
 import com.example.saftymonitoringsystem.ui.screens.HistoryScreen
+import com.example.saftymonitoringsystem.ui.screens.WebScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +70,7 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = "dashboard") {
                     composable("dashboard") {
                         DashboardScreen(
+                            viewModel = viewModel,
                             onStartMonitoring = {
                                 if (permissionsGranted) {
                                     navController.navigate("monitoring")
@@ -87,17 +89,25 @@ class MainActivity : ComponentActivity() {
                             },
                             onNavigateToHistory = {
                                 navController.navigate("history")
-                            }
+                            },
+                            onNavigateToWeb = {
+                                navController.navigate("web")
+                            },
+                            onNavigateToSettings = {},
+                            onNavigateToProfile = {}
                         )
                     }
                     composable("monitoring") {
-                        MonitoringScreen(viewModel)
+                        MonitoringScreen(viewModel, onBack = { navController.popBackStack() })
                     }
                     composable("contacts") {
                         ContactsScreen(viewModel, onBack = { navController.popBackStack() })
                     }
                     composable("history") {
                         HistoryScreen(viewModel, onBack = { navController.popBackStack() })
+                    }
+                    composable("web") {
+                        WebScreen(onBack = { navController.popBackStack() })
                     }
                 }
             }

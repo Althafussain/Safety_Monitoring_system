@@ -32,6 +32,7 @@ fun DashboardScreen(
     onStartMonitoring: () -> Unit,
     onNavigateToContacts: () -> Unit,
     onNavigateToHistory: () -> Unit,
+    onNavigateToWeb: () -> Unit,
     onNavigateToSettings: () -> Unit,
     onNavigateToProfile: () -> Unit
 ) {
@@ -148,6 +149,30 @@ fun DashboardScreen(
                     onClick = onNavigateToHistory,
                     gradientStart = Color(0xFF3B1F6E),
                     gradientEnd   = Color(0xFF7C3AED)
+                )
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                NavCard(
+                    modifier = Modifier.weight(1f),
+                    icon = Icons.Default.Public,
+                    title = "Web Portal",
+                    subtitle = "Open a web page inside the app",
+                    onClick = onNavigateToWeb,
+                    gradientStart = Color(0xFF0F766E),
+                    gradientEnd = Color(0xFF14B8A6)
+                )
+                NavCard(
+                    modifier = Modifier.weight(1f),
+                    icon = Icons.Default.Shield,
+                    title = "Safe Mode",
+                    subtitle = "Emergency guidance",
+                    onClick = {},
+                    gradientStart = Color(0xFF92400E),
+                    gradientEnd = Color(0xFFF59E0B)
                 )
             }
 

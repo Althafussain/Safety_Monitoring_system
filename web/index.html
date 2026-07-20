@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeGuard AI Web App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">AI safety companion</p>
+          <h1>SafeGuard AI</h1>
+          <p class="subtitle">Monitor, detect, and protect from a browser.</p>
+        </div>
+        <div class="header-pill" id="status-pill">Ready</div>
+      </header>
+
+      <nav class="tab-bar" aria-label="Primary navigation">
+        <button class="tab active" data-view="dashboard">Dashboard</button>
+        <button class="tab" data-view="monitoring">Monitoring</button>
+        <button class="tab" data-view="contacts">Contacts</button>
+        <button class="tab" data-view="history">History</button>
+        <button class="tab" data-view="settings">Settings</button>
+      </nav>
+
+      <main class="content">
+        <section id="dashboard-view" class="view active">
+          <div class="hero-card">
+            <div>
+              <p class="section-label">Live threat overview</p>
+              <h2 id="threat-title">Environment appears safe</h2>
+              <p id="threat-message">The system is standing by and monitoring your surroundings.</p>
+            </div>
+            <div class="gauge-wrap">
+              <div class="gauge" id="gauge">
+                <span id="threat-score">0%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="card stat-card">
+              <p class="stat-label">Monitoring</p>
+              <h3 id="monitoring-status">Inactive</h3>
+            </article>
+            <article class="card stat-card">
+              <p class="stat-label">Contacts</p>
+              <h3 id="contacts-count">0</h3>
+            </article>
+            <article class="card stat-card">
+              <p class="stat-label">Incidents</p>
+              <h3 id="incidents-count">0</h3>
+            </article>
+          </div>
+
+          <div class="action-row">
+            <button id="monitor-toggle" class="primary-btn">Start monitoring</button>
+            <button id="panic-btn" class="secondary-btn danger">Trigger SOS</button>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Quick access</h3>
+            </div>
+            <div class="quick-grid">
+              <button class="quick-card" data-view="contacts">Manage contacts</button>
+              <button class="quick-card" data-view="history">Review incidents</button>
+              <button class="quick-card" data-view="settings">Adjust alerts</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="monitoring-view" class="view">
+          <div class="card">
+            <div class="card-header">
+              <h3>Live monitoring</h3>
+              <span class="badge" id="monitor-badge">Standby</span>
+            </div>
+            <div class="monitoring-stage">
+              <div id="camera-shell" class="camera-placeholder">
+                <video id="camera-feed" autoplay playsinline muted></video>
+                <div id="camera-status" class="camera-status">Camera will start when monitoring begins.</div>
+              </div>
+              <div class="monitoring-details">
+                <div class="detail-pill">Emotion <strong id="emotion-pill">Neutral</strong></div>
+                <div class="detail-pill">Motion <strong id="motion-pill">Still</strong></div>
+                <div class="detail-pill">Detected <strong id="objects-pill">No objects</strong></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacts-view" class="view">
+          <div class="card">
+            <div class="card-header">
+              <h3>Trusted contacts</h3>
+              <button id="add-contact-btn" class="primary-btn small">Add contact</button>
+            </div>
+            <div id="contacts-list" class="list"></div>
+          </div>
+        </section>
+
+        <section id="history-view" class="view">
+          <div class="card">
+            <div class="card-header">
+              <h3>Incident history</h3>
+            </div>
+            <div id="history-list" class="list"></div>
+          </div>
+        </section>
+
+        <section id="settings-view" class="view">
+          <div class="card">
+            <div class="card-header">
+              <h3>Alert settings</h3>
+            </div>
+            <div class="settings-list">
+              <label class="setting-row">
+                <span>SMS alerts</span>
+                <input type="checkbox" id="sms-toggle" />
+              </label>
+              <label class="setting-row">
+                <span>Push notifications</span>
+                <input type="checkbox" id="push-toggle" />
+              </label>
+              <label class="setting-row">
+                <span>Auto alert threshold</span>
+                <input type="range" id="threshold-range" min="40" max="100" step="5" />
+              </label>
+              <p class="helper-text" id="threshold-value">Threshold: 70%</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

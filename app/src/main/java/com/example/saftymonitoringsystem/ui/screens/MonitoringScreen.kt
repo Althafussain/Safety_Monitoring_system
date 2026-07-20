@@ -58,7 +58,7 @@ fun MonitoringScreen(
 
     // ── Analyzers ─────────────────────────────────────────────────────────────
     val faceAnalyzer = remember {
-        FaceAnalyzer { emotion, conf, breakdown ->
+        FaceAnalyzer(context) { emotion, conf, breakdown ->
             viewModel.updateEmotion(emotion, conf, breakdown)
         }
     }

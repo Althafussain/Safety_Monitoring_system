@@ -54,7 +54,7 @@ fun ContactsScreen(viewModel: SafetyViewModel, onBack: () -> Unit) {
             AddContactDialog(
                 onDismiss = { showAddDialog = false },
                 onAdd = { name, phone, relation ->
-                    viewModel.addContact(name, phone, relation)
+                    viewModel.addContact(name, phone, "", relation)
                     showAddDialog = false
                 }
             )
