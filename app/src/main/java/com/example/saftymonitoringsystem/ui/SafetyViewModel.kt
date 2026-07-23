@@ -165,7 +165,7 @@ class SafetyViewModel(application: Application) : AndroidViewModel(application) 
 
         viewModelScope.launch {
             val location = kotlinx.coroutines.suspendCancellableCoroutine { cont ->
-                locationHelper.getLastLocation { loc -> cont.resume(loc) {} }
+                locationHelper.getLastLocation { loc -> cont.resume(loc, onCancellation = {}) }
             }
 
             val incident = SafetyIncident(

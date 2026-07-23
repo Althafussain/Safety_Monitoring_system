@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.saftymonitoringsystem"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.saftymonitoringsystem"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.11.0")
 
     // CameraX
     implementation(libs.androidx.camera.core)
@@ -52,9 +53,8 @@ dependencies {
 
     // ML Kit & TFLite
     implementation(libs.mlkit.face.detection)
-    implementation(libs.tensorflow.lite)
-    implementation(libs.tensorflow.lite.support)
-    implementation(libs.tensorflow.lite.task.vision)
+    implementation("org.tensorflow:tensorflow-lite:2.16.1")
+    implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
 
     // Navigation & Location
     implementation(libs.androidx.navigation.compose)
